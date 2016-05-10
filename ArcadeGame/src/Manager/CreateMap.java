@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -18,7 +19,8 @@ public class CreateMap extends Canvas {
 		BufferedReader br = null;
 
 		try {
-			br = new BufferedReader(new FileReader("C:/Users/Chris/workspace/ArcadeGame/src/Manager/testmap.txt"));
+			String absolute = new File("").getAbsolutePath();
+			br = new BufferedReader(new FileReader(absolute + "/resources/testmap.txt"));
 		} catch (IOException e) {
 			System.out.println("Failed to create map");
 		}
