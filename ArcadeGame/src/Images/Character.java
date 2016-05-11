@@ -24,6 +24,8 @@ public class Character {
 
 	private Pixel futureCoordinates;
 
+	private boolean hasAxe = false, hasKey = false;
+
 	// Controls player speed
 	private final int SPEED = 2;
 
@@ -95,6 +97,15 @@ public class Character {
 		else if (y < yFuture) {
 			y += SPEED;
 		}
+
+		if (this.x == Main.collision.getAxeCoordinates().getX() && this.y == Main.collision.getAxeCoordinates().getY()) {
+			hasAxe = true;
+		}
+		if (this.x == Main.collision.getKeyCoordinates().getX() && this.y == Main.collision.getKeyCoordinates().getY()) {
+			hasKey = true;
+		}
+
+
 	}
 
 	// Draws the character sprite to the screen
@@ -198,6 +209,13 @@ public class Character {
 	}
 	public int getY() {
 		return this.y;
+	}
+
+	public boolean getHasAxe() {
+		return this.hasAxe;
+	}
+	public boolean getHasKey() {
+		return this.hasKey;
 	}
 
 }

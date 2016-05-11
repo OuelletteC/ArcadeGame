@@ -23,7 +23,7 @@ public class Main extends Canvas implements Runnable {
 	public Thread gameThread;
 	public static CollisionManager collision = new CollisionManager();
 
-	private static Character player;
+	public static Character player;
 
 	Graphics g2 = getGraphics();
 
