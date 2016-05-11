@@ -6,101 +6,107 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import Control.Main;
-import Images.Items;
+import Images.ItemImages;
 import Images.MapElements;
+import Main.Main;
 
 public class CreateMap {
 
-	MapElements me = new MapElements();
-	Items items = new Items();
+	private MapElements mapElements = Main.getMapElements();
+	private ItemImages items = Main.getItemImages();
+	private String[][] mapArray = new String[Main.TILES_IN_WIDTH][Main.TILES_IN_HEIGHT];
+	private String newLine;
+	private BufferedReader br = null;
+	public ItemCoordinates itemCoordinates;
 
-	public CreateMap(Graphics g) throws IOException {
-
-		String newLine;
-		BufferedReader br = null;
+	// Creates the map with the given map number
+	// Also calls item coordinates which stores coordinates to each item in a pixel array
+	public CreateMap(int mapNumber) throws IOException {
 
 		try {
 			String absolute = new File("").getAbsolutePath();
-			br = new BufferedReader(new FileReader(absolute + "/resources/testmap.txt"));
+			br = new BufferedReader(new FileReader(absolute + "/resources/level" + mapNumber + ".txt"));
 		} catch (IOException e) {
 			System.out.println("Failed to create map");
 		}
-
 
 		int horizontalCount = 0;
 		while ((newLine = br.readLine()) != null) {
 
 			String[] line = newLine.split(" ");
-			draw(line, g, horizontalCount);
+
+			for (int i = 0; i < Main.TILES_IN_WIDTH; i++) {
+				mapArray[i][horizontalCount] = line[i];
+			}
+
 			horizontalCount++;
 		}
 
+		itemCoordinates = new ItemCoordinates(mapArray);
 	}
 
-	public void draw(String[] line, Graphics g, int horizontalCount) {
+	//  Draws the map to the screen using the 2D string array
+	public void drawMap(Graphics g) {
 
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < Main.TILES_IN_WIDTH; i++) {
+			for (int j = 0; j < Main.TILES_IN_HEIGHT; j++) {
 
-			// G represents grass
-			if (line[i].equals("G")) {
-				g.drawImage(me.getGrass(), 32*i, 32*horizontalCount, null);
-			}
-			// S represents a special tree
-			else if (line[i].equals("R")) {
-				g.drawImage(me.getGrassWithTwill(), 32*i, 32*horizontalCount, null);
-			}
-			// A represents an axe
-			else if (line[i].equals("A")) {
-				Main.collision.addAxeCoordinates(32*i, 32*horizontalCount);
-				if (Main.player.getHasAxe()) {
-					g.drawImage(me.getGrass(), 32*i, 32*horizontalCount, null);
+				// G represents grass
+				if (mapArray[i][j].equals("G")) {
+					g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
 				}
-				else {
-					g.drawImage(items.getAxe(), 32*i, 32*horizontalCount, null);
+				// R represents grass with twill
+				else if (mapArray[i][j].equals("R")) {
+					g.drawImage(mapElements.getGrassWithTwill(), 32*i, 32*j, null);
 				}
-			}
-			// K represents a key
-			else if (line[i].equals("K")) {
-				Main.collision.addKeyCoordinates(32*i, 32*horizontalCount);
-				if (Main.player.getHasKey()) {
-					g.drawImage(me.getGrass(), 32*i, 32*horizontalCount, null);
+				// D represents a door
+				else if (mapArray[i][j].equals("D")) {
+					g.drawImage(items.getDoor()[0], 32*i, 32*j, null);
 				}
-				else {
-					g.drawImage(items.getKey(), 32*i, 32*horizontalCount, null);
+				// A represents an axe
+				else if (mapArray[i][j].equals("A")) {
+					if (Main.getPlayer().getHasAxe()) {
+						g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
+					}
+					else {
+						g.drawImage(items.getAxe(), 32*i, 32*j, null);
+					}
 				}
-			}
-			// X represents the placeholder for the axe overlay
-			else if (line[i].equals("X")) {
-				if (Main.player.getHasAxe()) {
-					g.drawImage(items.getAxeOverlay(), 32*i, 32*horizontalCount, null);
+				// K represents a key
+				else if (mapArray[i][j].equals("K")) {
+					if (Main.getPlayer().getHasKey()) {
+						g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
+					}
+					else {
+						g.drawImage(items.getKey(), 32*i, 32*j, null);
+					}
 				}
-				else {
-					g.drawImage(me.getGrass(), 32*i, 32*horizontalCount, null);
+				// X represents the placeholder for the axe overlay
+				else if (mapArray[i][j].equals("X")) {
+					if (Main.getPlayer().getHasAxe()) {
+						g.drawImage(items.getAxeOverlay(), 32*i, 32*j, null);
+					}
+					else {
+						g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
+					}
 				}
-			}
-			// E represents the placeholder for the key overlay
-			else if (line[i].equals("E")) {
-				if (Main.player.getHasKey()) {
-					g.drawImage(items.getKeyOverlay(), 32*i, 32*horizontalCount, null);
+				// E represents the placeholder for the key overlay
+				else if (mapArray[i][j].equals("E")) {
+					if (Main.getPlayer().getHasKey()) {
+						g.drawImage(items.getKeyOverlay(), 32*i, 32*j, null);
+					}
+					else {
+						g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
+					}
 				}
-				else {
-					g.drawImage(me.getGrass(), 32*i, 32*horizontalCount, null);
+				// T represents a tree
+				else if (mapArray[i][j].equals("T")) {
+					g.drawImage(mapElements.getTree(), 32*i, 32*j, null);
 				}
-			}
-			// T represents a tree
-			else if (line[i].equals("T")) {
-				g.drawImage(me.getTree(), 32*i, 32*horizontalCount, null);
-
-				// Adding coordinates of trees to illegal coordinates array
-				Main.collision.addCoordinates(32*i, 32*horizontalCount);
-			}
-			// S represents a special tree
-			else if (line[i].equals("S")) {
-				g.drawImage(me.getSpecialTree(), 32*i, 32*horizontalCount, null);
-
-				// Adding coordinates of trees to illegal coordinates array
-				Main.collision.addCoordinates(32*i, 32*horizontalCount);
+				// S represents a special tree
+				else if (mapArray[i][j].equals("S")) {
+					g.drawImage(mapElements.getSpecialTree(), 32*i, 32*j, null);
+				}
 			}
 		}
 	}

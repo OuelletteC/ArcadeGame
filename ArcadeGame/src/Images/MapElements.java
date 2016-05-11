@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Control.Main;
-import Manager.BufferedImageLoader;
+import Main.Main;
 
 public class MapElements {
 

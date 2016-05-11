@@ -1,36 +1,39 @@
-package Control;
+package Main;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFrame;
-
-import Images.Character;
-import Manager.CollisionManager;
+import Control.Character;
+import Images.ItemImages;
+import Images.MapElements;
 import Manager.CreateMap;
 import Manager.KeyManager;
 
 public class Main extends Canvas implements Runnable {
 
-	public static final int TILE = 32;
-	public static final int WIDTH = TILE*30, HEIGHT = TILE*20;
+	public static final int TILES = 32;
+	public static final int TILES_IN_WIDTH = 30, TILES_IN_HEIGHT = 20;
+	public static final int WIDTH = TILES*TILES_IN_WIDTH, HEIGHT = TILES*TILES_IN_HEIGHT;
 	public final int moveDown = 0, moveLeft = 1, moveRight = 2, moveUp = 3;
+
 	public static boolean running = false;
 	public Thread gameThread;
-	public static CollisionManager collision = new CollisionManager();
 
-	public static Character player;
+	private static Character player;
+	private static MapElements mapElements = new MapElements();
+	private static ItemImages items = new ItemImages();
 
-	Graphics g2 = getGraphics();
+	public static CreateMap level1;
 
 	@Override
 	public void run() {
 
 		init();
+		loadMaps();
 
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60D;
@@ -38,7 +41,6 @@ public class Main extends Canvas implements Runnable {
 		double delta = 0;
 
 		while (running) {
-
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
@@ -46,16 +48,21 @@ public class Main extends Canvas implements Runnable {
 				tick();
 				delta--;
 			}
-
 			render();
 		}
 	}
 
+	public void loadMaps() {
+		try {
+			level1 = new CreateMap(1);
+		} catch (IOException e) {
+			System.out.println("Failed to create map 1");
+		}
+	}
+
 	public void init() {
-
-		player = new Character(9,TILE*3,TILE*3);
+		player = new Character(9,TILES*3,TILES*3);
 		this.addKeyListener(new KeyManager());
-
 	}
 
 
@@ -75,11 +82,7 @@ public class Main extends Canvas implements Runnable {
 
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		try {
-			new CreateMap(g);
-		} catch (IOException e) {
-			System.out.println("Failed to create map");
-		}
+		level1.drawMap(g);
 
 		player.render(g);
 
@@ -128,6 +131,11 @@ public class Main extends Canvas implements Runnable {
 	public static Character getPlayer() {
 		return player;
 	}
-
+	public static MapElements getMapElements() {
+		return mapElements;
+	}
+	public static ItemImages getItemImages() {
+		return items;
+	}
 
 }
