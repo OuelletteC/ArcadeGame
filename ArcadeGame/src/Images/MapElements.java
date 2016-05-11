@@ -12,6 +12,8 @@ public class MapElements {
 
 	private BufferedImage grass;
 	private BufferedImage tree;
+	private BufferedImage specialTree;
+	private BufferedImage grassWithTwill;
 
 	public MapElements() {
 		initElements();
@@ -22,12 +24,11 @@ public class MapElements {
 		BufferedImageLoader loader = new BufferedImageLoader();
 		BufferedImage spriteSheet = null;
 		try {
-			// Grass sprite
-			spriteSheet = loader.loadImage("grass_sprites.png");
-			this.grass = spriteSheet.getSubimage(130, 130, 32, 32);
-
-			spriteSheet = loader.loadImage("tree.png");
-			this.tree = spriteSheet.getSubimage(0, 0, 32, 32);
+			spriteSheet = loader.loadImage("tile_set.png");
+			this.grass = spriteSheet.getSubimage(32*1, 32*0, 32, 32);
+			this.grassWithTwill = spriteSheet.getSubimage(32*2, 32*0, 32, 32);
+			this.tree = spriteSheet.getSubimage(32*0, 32*1, 32, 32);
+			this.specialTree = spriteSheet.getSubimage(32*1, 32*1, 32, 32);
 
 		} catch (IOException e) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
@@ -40,4 +41,11 @@ public class MapElements {
 	public BufferedImage getTree() {
 		return this.tree;
 	}
+	public BufferedImage getGrassWithTwill() {
+		return this.grassWithTwill;
+	}
+	public BufferedImage getSpecialTree() {
+		return this.specialTree;
+	}
+
 }

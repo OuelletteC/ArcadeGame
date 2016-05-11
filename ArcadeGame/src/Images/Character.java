@@ -25,7 +25,7 @@ public class Character {
 	private Pixel futureCoordinates;
 
 	// Controls player speed
-	private final int SPEED = 4;
+	private final int SPEED = 2;
 
 	// Array storing the 4 image directions of the character
 	private BufferedImage[] characterDown = new BufferedImage[4];
@@ -58,7 +58,8 @@ public class Character {
 		BufferedImageLoader loader = new BufferedImageLoader();
 		BufferedImage spriteSheet = null;
 		try {
-			spriteSheet = loader.loadImage("player_sprites.png");
+			spriteSheet = loader.loadImage("player_sprites_green.png");
+
 		} catch (IOException e) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
 		}
