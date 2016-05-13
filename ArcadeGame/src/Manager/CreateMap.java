@@ -12,8 +12,8 @@ import Main.Main;
 
 public class CreateMap {
 
-	private MapElements mapElements = Main.getMapElements();
-	private ItemImages items = Main.getItemImages();
+	private MapElements mapElements = new MapElements();
+	private ItemImages items = new ItemImages();
 	private String[][] mapArray = new String[Main.TILES_IN_WIDTH][Main.TILES_IN_HEIGHT];
 	private String newLine;
 	private BufferedReader br = null;
@@ -61,7 +61,11 @@ public class CreateMap {
 				}
 				// D represents a door
 				else if (mapArray[i][j].equals("D")) {
-					g.drawImage(items.getDoor()[0], 32*i, 32*j, null);
+					g.drawImage(mapElements.getDoor()[0], 32*i, 32*j, null);
+				}
+				// O represents an open door
+				else if (mapArray[i][j].equals("O")) {
+					g.drawImage(mapElements.getDoor()[2], 32*i, 32*j, null);
 				}
 				// A represents an axe
 				else if (mapArray[i][j].equals("A")) {
@@ -109,6 +113,13 @@ public class CreateMap {
 				}
 			}
 		}
+	}
+
+	public void setMapArray(String i, int x, int y) {
+		mapArray[x][y] = i;
+	}
+	public String[][] getMapArray() {
+		return mapArray;
 	}
 
 }

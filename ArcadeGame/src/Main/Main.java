@@ -7,27 +7,29 @@ import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+
 import Control.Character;
-import Images.ItemImages;
-import Images.MapElements;
 import Manager.CreateMap;
 import Manager.KeyManager;
 
 public class Main extends Canvas implements Runnable {
 
+	private static final long serialVersionUID = 1L;
 	public static final int TILES = 32;
 	public static final int TILES_IN_WIDTH = 30, TILES_IN_HEIGHT = 20;
 	public static final int WIDTH = TILES*TILES_IN_WIDTH, HEIGHT = TILES*TILES_IN_HEIGHT;
-	public final int moveDown = 0, moveLeft = 1, moveRight = 2, moveUp = 3;
+	public static final int DOWN = 0, LEFT = 1, RIGHT = 2, UP = 3;
 
 	public static boolean running = false;
 	public Thread gameThread;
 
 	private static Character player;
-	private static MapElements mapElements = new MapElements();
-	private static ItemImages items = new ItemImages();
 
-	public static CreateMap level1;
+	private static CreateMap level1;
+	private static CreateMap level2;
+	private static CreateMap level3;
+	private static CreateMap currentLevel;
+
 
 	@Override
 	public void run() {
@@ -51,20 +53,19 @@ public class Main extends Canvas implements Runnable {
 			render();
 		}
 	}
-
-	public void loadMaps() {
-		try {
-			level1 = new CreateMap(1);
-		} catch (IOException e) {
-			System.out.println("Failed to create map 1");
-		}
-	}
-
 	public void init() {
 		player = new Character(9,TILES*3,TILES*3);
 		this.addKeyListener(new KeyManager());
 	}
 
+	public void loadMaps() {
+		try {
+			level1 = new CreateMap(1);
+			currentLevel = level1;
+		} catch (IOException e) {
+			System.out.println("Failed to create map 1");
+		}
+	}
 
 	public void tick() {
 		player.tick();
@@ -79,37 +80,16 @@ public class Main extends Canvas implements Runnable {
 		}
 
 		Graphics g = bs.getDrawGraphics();
-
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		level1.drawMap(g);
-
+		currentLevel.drawMap(g);
 		player.render(g);
 
 		g.dispose();
 		bs.show();
 	}
 
-	public synchronized void start() {
-
-		if (running) return;
-		running = true;
-		gameThread = new Thread(this);
-		gameThread.start();
-	}
-
-	public synchronized void stop() {
-		if (!running) return;
-		running = false;
-		try {
-			gameThread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public static void main(String[] args) {
-
 		Main main = new Main();
 		main.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		main.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -128,14 +108,55 @@ public class Main extends Canvas implements Runnable {
 		main.requestFocus();
 	}
 
+	public synchronized void start() {
+		if (running) return;
+		running = true;
+		gameThread = new Thread(this);
+		gameThread.start();
+	}
+
+	public synchronized void stop() {
+		if (!running) return;
+		running = false;
+		try {
+			gameThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void setNextLevel() {
+		if (currentLevel == level1) {
+			try {
+				level2 = new CreateMap(2);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			currentLevel = level2;
+		}
+		else if (currentLevel == level2) {
+			try {
+				level3 = new CreateMap(3);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			currentLevel = level3;
+		}
+	}
+
 	public static Character getPlayer() {
 		return player;
 	}
-	public static MapElements getMapElements() {
-		return mapElements;
+	public static CreateMap getLevel1() {
+		return level1;
 	}
-	public static ItemImages getItemImages() {
-		return items;
+	public static CreateMap getLevel2() {
+		return level2;
 	}
-
+	public static CreateMap getLevel3() {
+		return level3;
+	}
+	public static CreateMap getCurrentLevel() {
+		return currentLevel;
+	}
 }

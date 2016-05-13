@@ -13,6 +13,7 @@ public class MapElements {
 	private BufferedImage tree;
 	private BufferedImage specialTree;
 	private BufferedImage grassWithTwill;
+	private BufferedImage[] door = new BufferedImage[4];
 
 	public MapElements() {
 		initElements();
@@ -24,10 +25,15 @@ public class MapElements {
 		BufferedImage spriteSheet = null;
 		try {
 			spriteSheet = loader.loadImage("tile_set.png");
-			this.grass = spriteSheet.getSubimage(32*1, 32*0, 32, 32);
-			this.grassWithTwill = spriteSheet.getSubimage(32*2, 32*0, 32, 32);
-			this.tree = spriteSheet.getSubimage(32*0, 32*1, 32, 32);
-			this.specialTree = spriteSheet.getSubimage(32*1, 32*1, 32, 32);
+			grass = spriteSheet.getSubimage(32*1, 32*0, 32, 32);
+			grassWithTwill = spriteSheet.getSubimage(32*2, 32*0, 32, 32);
+			tree = spriteSheet.getSubimage(32*0, 32*1, 32, 32);
+			specialTree = spriteSheet.getSubimage(32*1, 32*1, 32, 32);
+
+			spriteSheet = loader.loadImage("door.png");
+			for (int i = 0; i < 4; i++) {
+				door[i] = spriteSheet.getSubimage(32*0, 32*i, 32, 32);
+			}
 
 		} catch (IOException e) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
@@ -46,5 +52,7 @@ public class MapElements {
 	public BufferedImage getSpecialTree() {
 		return this.specialTree;
 	}
-
+	public BufferedImage[] getDoor() {
+		return this.door;
+	}
 }
