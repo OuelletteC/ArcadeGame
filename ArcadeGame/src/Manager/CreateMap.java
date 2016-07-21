@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import GameStateManager.PlayState;
 import Images.ItemImages;
 import Images.MapElements;
 import Main.Main;
@@ -53,7 +54,7 @@ public class CreateMap {
 		for (int i = 0; i < Main.TILES_IN_WIDTH; i++) {
 			for (int j = 0; j < Main.TILES_IN_HEIGHT; j++) {
 				if (mapArray[i][j].equals(playerSpawn)) {
-					Main.getPlayer().setLocation(i*Main.TILES, j*Main.TILES);
+					PlayState.getPlayer().setLocation(i*Main.TILES, j*Main.TILES);
 				}
 			}
 		}
@@ -143,7 +144,7 @@ public class CreateMap {
 				}
 				// A represents an axe
 				else if (mapArray[i][j].equals(axe)) {
-					if (Main.getPlayer().getHasAxe()) {
+					if (PlayState.getPlayer().getHasAxe()) {
 						g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
 					}
 					else {
@@ -152,7 +153,7 @@ public class CreateMap {
 				}
 				// K represents a key
 				else if (mapArray[i][j].equals(key)) {
-					if (Main.getPlayer().getHasKey()) {
+					if (PlayState.getPlayer().getHasKey()) {
 						g.drawImage(mapElements.getGrass(), 32*i, 32*j, null);
 					}
 					else {
@@ -206,7 +207,7 @@ public class CreateMap {
 
 				// AOV represents the placeholder for the axe overlay
 				else if (mapArray[i][j].equals(axeOverlay)) {
-					if (Main.getPlayer().getHasAxe()) {
+					if (PlayState.getPlayer().getHasAxe()) {
 						g.drawImage(items.getAxe(), 32*i, 32*j, null);
 					}
 					else {
@@ -215,7 +216,7 @@ public class CreateMap {
 				}
 				// KOV represents the placeholder for the key overlay
 				else if (mapArray[i][j].equals(keyOverlay)) {
-					if (Main.getPlayer().getHasKey()) {
+					if (PlayState.getPlayer().getHasKey()) {
 						g.drawImage(items.getKey(), 32*i, 32*j, null);
 					}
 					else {

@@ -2,6 +2,7 @@ package Control;
 
 import java.awt.Graphics;
 
+import GameStateManager.PlayState;
 import Images.CharacterImages;
 import Main.Main;
 import Manager.CreateMap;
@@ -70,13 +71,13 @@ public class Character {
 			if ((x == xFuture) && (y == yFuture)) {
 
 				// new
-				if (!(Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getTree()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getSpecialTree()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getDoor()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getWall()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRockBottomLeft()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRockBottomOnly()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRockBottomRight()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getGrassTopLeft()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getGrassTopOnly()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getGrassTopRight()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomLeft()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getRockBottomOnly()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomRight()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRock()))) {
+				if (!(PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getTree()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getSpecialTree()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getDoor()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getWall()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRockBottomLeft()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRockBottomOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRockBottomRight()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getGrassTopLeft()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getGrassTopOnly()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getGrassTopRight()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomLeft()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getRockBottomOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomRight()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)+1].equals(CreateMap.getRock()))) {
 							if (!(yFuture + Main.TILES > Main.HEIGHT - Main.TILES)) {
 								yFuture += Main.TILES;
 							}
@@ -87,13 +88,13 @@ public class Character {
 		}
 		else if (direction == leftInt) {
 			if ((this.x == this.xFuture) && (this.y == this.yFuture)) {
-				if (!(Main.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getTree()) || Main.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getSpecialTree()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getDoor()) || Main.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getWall()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRockBottomLeft()) || Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRockBottomOnly()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRockBottomRight()) || Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getGrassTopRight()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getGrassRightOnly()) || Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getGrassBottomRight()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopLeft()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassLeftOnly()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomLeft()) || Main.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRock()))) {
+				if (!(PlayState.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getTree()) || PlayState.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getSpecialTree()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getDoor()) || PlayState.getCurrentLevel().getMapArray()[(x/32)-1][y/32].equals(CreateMap.getWall()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRockBottomLeft()) || PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRockBottomOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRockBottomRight()) || PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getGrassTopRight()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getGrassRightOnly()) || PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getGrassBottomRight()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopLeft()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassLeftOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomLeft()) || PlayState.getCurrentLevel().getMapArray()[(x/32)-1][(y/32)].equals(CreateMap.getRock()))) {
 					if (!(xFuture - Main.TILES < 0)) {
 						xFuture -= Main.TILES;
 					}
@@ -103,13 +104,13 @@ public class Character {
 		}
 		else if (direction == rightInt) {
 			if ((this.x == this.xFuture) && (this.y == this.yFuture)) {
-				if (!(Main.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getTree()) || Main.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getSpecialTree()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getDoor()) || Main.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getWall()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRockBottomLeft()) || Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRockBottomOnly()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRockBottomRight()) || Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getGrassTopLeft()) ||
-						Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getGrassLeftOnly()) || Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getGrassBottomLeft()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopRight()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassRightOnly()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomRight()) || Main.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRock()))) {
+				if (!(PlayState.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getTree()) || PlayState.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getSpecialTree()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getDoor()) || PlayState.getCurrentLevel().getMapArray()[(x/32)+1][y/32].equals(CreateMap.getWall()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRockBottomLeft()) || PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRockBottomOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRockBottomRight()) || PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getGrassTopLeft()) ||
+						PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getGrassLeftOnly()) || PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getGrassBottomLeft()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopRight()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassRightOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassBottomRight()) || PlayState.getCurrentLevel().getMapArray()[(x/32)+1][(y/32)].equals(CreateMap.getRock()))) {
 					if (!(xFuture + Main.TILES > Main.WIDTH - Main.TILES)) {
 						xFuture += Main.TILES;
 					}
@@ -120,13 +121,13 @@ public class Character {
 		}
 		else if (direction == upInt) {
 			if ((this.x == this.xFuture) && (this.y == this.yFuture)) {
-				if (!(Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getTree()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getSpecialTree()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getDoor()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getWall()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomLeft()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomOnly()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomRight()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getGrassBottomLeft()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomOnly()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getGrassBottomRight()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopLeft()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopOnly()) ||
-						Main.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopRight()) || Main.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRock()))) {
+				if (!(PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getTree()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getSpecialTree()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getDoor()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getWall()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomLeft()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomRight()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getGrassBottomLeft()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRockBottomOnly()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getGrassBottomRight()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopLeft()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopOnly()) ||
+						PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)].equals(CreateMap.getGrassTopRight()) || PlayState.getCurrentLevel().getMapArray()[x/32][(y/32)-1].equals(CreateMap.getRock()))) {
 					if (!(yFuture - Main.TILES < 0)) {
 						yFuture -= Main.TILES;
 					}
@@ -150,14 +151,14 @@ public class Character {
 		}
 
 		// Axe
-		if (Main.getCurrentLevel().getMapArray()[x/WIDTH][y/HEIGHT].equals(CreateMap.getAxe())) {
+		if (PlayState.getCurrentLevel().getMapArray()[x/WIDTH][y/HEIGHT].equals(CreateMap.getAxe())) {
 			hasAxe = true;
-			Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), x/WIDTH, y/HEIGHT);
+			PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), x/WIDTH, y/HEIGHT);
 		}
 		// Key
-		if (Main.getCurrentLevel().getMapArray()[x/WIDTH][y/HEIGHT].equals(CreateMap.getKey())) {
+		if (PlayState.getCurrentLevel().getMapArray()[x/WIDTH][y/HEIGHT].equals(CreateMap.getKey())) {
 			hasKey = true;
-			Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), x/WIDTH, y/HEIGHT);
+			PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), x/WIDTH, y/HEIGHT);
 		}
 
 
@@ -165,16 +166,16 @@ public class Character {
 		if (detonate == true) {
 			for (int i = 0; i < Main.TILES_IN_WIDTH; i++) {
 				for (int j = 0; j < Main.TILES_IN_HEIGHT; j++) {
-					if (Main.getCurrentLevel().getMapArray()[i][j].equals(CreateMap.getSmallBomb())) {
+					if (PlayState.getCurrentLevel().getMapArray()[i][j].equals(CreateMap.getSmallBomb())) {
 
 						detonatedSmallBomb++;
 
 						// Checking what the bomb removes
 						for (int a = i-1; a < i+2; a++) {
 							for (int b = j-1; b < j+2; b++) {
-								if (Main.getCurrentLevel().getMapArray()[a][b].equals(CreateMap.getRock()) ||
-										Main.getCurrentLevel().getMapArray()[a][b].equals(CreateMap.getSmallBomb())) {
-									Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), a, b);
+								if (PlayState.getCurrentLevel().getMapArray()[a][b].equals(CreateMap.getRock()) ||
+										PlayState.getCurrentLevel().getMapArray()[a][b].equals(CreateMap.getSmallBomb())) {
+									PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), a, b);
 								}
 							}
 						}
@@ -185,16 +186,16 @@ public class Character {
 		}
 
 		// If level is passed
-		if (Main.getCurrentLevel().getMapArray()[this.x/Main.TILES][this.y/Main.TILES].equals(CreateMap.getOpenDoor())) {
+		if (PlayState.getCurrentLevel().getMapArray()[this.x/Main.TILES][this.y/Main.TILES].equals(CreateMap.getOpenDoor())) {
 			hasAxe = false;
 			hasKey = false;
-			Main.setNextLevel();
+			PlayState.setNextLevel();
 			detonatedSmallBomb = 0;
 			smallBomb = 0;
 
 			for (int i = 0; i < Main.TILES_IN_WIDTH; i++) {
 				for (int j = 0; j < Main.TILES_IN_HEIGHT; j++) {
-					if (Main.getCurrentLevel().getMapArray()[i][j].equals(CreateMap.getSmallBombOverlay())) {
+					if (PlayState.getCurrentLevel().getMapArray()[i][j].equals(CreateMap.getSmallBombOverlay())) {
 						smallBomb++;
 					}
 				}
@@ -205,7 +206,7 @@ public class Character {
 		// If level is reset
 		if (this.reset == true) {
 
-			Main.resetLevel();
+			PlayState.resetLevel();
 
 			hasAxe = false;
 			hasKey = false;
@@ -214,7 +215,7 @@ public class Character {
 
 			for (int i = 0; i < Main.TILES_IN_WIDTH; i++) {
 				for (int j = 0; j < Main.TILES_IN_HEIGHT; j++) {
-					if (Main.getCurrentLevel().getMapArray()[i][j].equals(CreateMap.getSmallBombOverlay())) {
+					if (PlayState.getCurrentLevel().getMapArray()[i][j].equals(CreateMap.getSmallBombOverlay())) {
 						smallBomb++;
 					}
 				}
@@ -307,8 +308,8 @@ public class Character {
 	}
 	public void decrementSmallBomb() {
 		this.smallBomb--;
-		Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), Main.getCurrentLevel().itemCoordinates.getSmallBombOverlay().get(detonatedSmallBomb).getX(),
-				Main.getCurrentLevel().itemCoordinates.getSmallBombOverlay().get(detonatedSmallBomb).getY());
+		PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), PlayState.getCurrentLevel().itemCoordinates.getSmallBombOverlay().get(detonatedSmallBomb).getX(),
+				PlayState.getCurrentLevel().itemCoordinates.getSmallBombOverlay().get(detonatedSmallBomb).getY());
 	}
 	public int getSmallBomb() {
 		return this.smallBomb;

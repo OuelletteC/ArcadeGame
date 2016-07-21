@@ -13,6 +13,9 @@ public class MenuScreen {
 	public MenuScreen() { }
 
 	public void drawMenuScreen(Graphics g) {
+		
+	
+		
 		g.drawImage(menuImage.getMenuBackground(), 0, 0, null);
 		g.drawImage(menuImage.getMenu(), 335, 170, null);
 		g.drawImage(menuImage.getGameTitle(), 230, 50, null);

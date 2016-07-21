@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import GameStateManager.State;
 import Main.Main;
+import GameStateManager.PlayState;
 
 public class KeyManager implements KeyListener {
 
@@ -15,20 +16,20 @@ public class KeyManager implements KeyListener {
 
 			// Controls player 1 movement
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				Main.getPlayer().down = true;
-				Main.getPlayer().setDirection(1);
+				PlayState.getPlayer().down = true;
+				PlayState.getPlayer().setDirection(1);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				Main.getPlayer().left = true;
-				Main.getPlayer().setDirection(2);
+				PlayState.getPlayer().left = true;
+				PlayState.getPlayer().setDirection(2);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				Main.getPlayer().right = true;
-				Main.getPlayer().setDirection(3);
+				PlayState.getPlayer().right = true;
+				PlayState.getPlayer().setDirection(3);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				Main.getPlayer().up = true;
-				Main.getPlayer().setDirection(4);
+				PlayState.getPlayer().up = true;
+				PlayState.getPlayer().setDirection(4);
 			}
 		}
 		else if (State.getState() == Main.menuState) {
@@ -42,50 +43,50 @@ public class KeyManager implements KeyListener {
 
 		// For key "A", check if the player has the axe, and if they are facing a special tree
 		if (e.getKeyCode() == KeyEvent.VK_A) {
-			if (Main.getPlayer().getHasAxe() == true) {
-				if (Main.getPlayer().getMoveDirection() == Main.DOWN) {
-					if (Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)+1].equals(CreateMap.getSpecialTree())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), Main.getPlayer().getX()/32, (Main.getPlayer().getY()/32)+1);
+			if (PlayState.getPlayer().getHasAxe() == true) {
+				if (PlayState.getPlayer().getMoveDirection() == Main.DOWN) {
+					if (PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)+1].equals(CreateMap.getSpecialTree())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), PlayState.getPlayer().getX()/32, (PlayState.getPlayer().getY()/32)+1);
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.LEFT) {
-					if (Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)-1][(Main.getPlayer().getY()/32)].equals(CreateMap.getSpecialTree())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), (Main.getPlayer().getX()/32)-1, (Main.getPlayer().getY()/32));
+				else if (PlayState.getPlayer().getMoveDirection() == Main.LEFT) {
+					if (PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)-1][(PlayState.getPlayer().getY()/32)].equals(CreateMap.getSpecialTree())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), (PlayState.getPlayer().getX()/32)-1, (PlayState.getPlayer().getY()/32));
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.RIGHT) {
-					if (Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)+1][(Main.getPlayer().getY()/32)].equals(CreateMap.getSpecialTree())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), (Main.getPlayer().getX()/32)+1, (Main.getPlayer().getY()/32));
+				else if (PlayState.getPlayer().getMoveDirection() == Main.RIGHT) {
+					if (PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)+1][(PlayState.getPlayer().getY()/32)].equals(CreateMap.getSpecialTree())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), (PlayState.getPlayer().getX()/32)+1, (PlayState.getPlayer().getY()/32));
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.UP) {
-					if (Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)-1].equals(CreateMap.getSpecialTree())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getGrass(), Main.getPlayer().getX()/32, (Main.getPlayer().getY()/32)-1);
+				else if (PlayState.getPlayer().getMoveDirection() == Main.UP) {
+					if (PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)-1].equals(CreateMap.getSpecialTree())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getGrass(), PlayState.getPlayer().getX()/32, (PlayState.getPlayer().getY()/32)-1);
 					}
 				}
 			}
 		}
 		// For key "K", check if the player has the key, and if they are facing a door
 		if (e.getKeyCode() == KeyEvent.VK_K) {
-			if (Main.getPlayer().getHasKey() == true) {
-				if (Main.getPlayer().getMoveDirection() == Main.DOWN) {
-					if (Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)+1].equals(CreateMap.getDoor())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), Main.getPlayer().getX()/32, (Main.getPlayer().getY()/32)+1);
+			if (PlayState.getPlayer().getHasKey() == true) {
+				if (PlayState.getPlayer().getMoveDirection() == Main.DOWN) {
+					if (PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)+1].equals(CreateMap.getDoor())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), PlayState.getPlayer().getX()/32, (PlayState.getPlayer().getY()/32)+1);
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.LEFT) {
-					if (Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)-1][(Main.getPlayer().getY()/32)].equals(CreateMap.getDoor())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), (Main.getPlayer().getX()/32)-1, (Main.getPlayer().getY()/32));
+				else if (PlayState.getPlayer().getMoveDirection() == Main.LEFT) {
+					if (PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)-1][(PlayState.getPlayer().getY()/32)].equals(CreateMap.getDoor())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), (PlayState.getPlayer().getX()/32)-1, (PlayState.getPlayer().getY()/32));
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.RIGHT) {
-					if (Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)+1][(Main.getPlayer().getY()/32)].equals(CreateMap.getDoor())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), (Main.getPlayer().getX()/32)+1, (Main.getPlayer().getY()/32));
+				else if (PlayState.getPlayer().getMoveDirection() == Main.RIGHT) {
+					if (PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)+1][(PlayState.getPlayer().getY()/32)].equals(CreateMap.getDoor())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), (PlayState.getPlayer().getX()/32)+1, (PlayState.getPlayer().getY()/32));
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.UP) {
-					if (Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)-1].equals(CreateMap.getDoor())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), Main.getPlayer().getX()/32, (Main.getPlayer().getY()/32)-1);
+				else if (PlayState.getPlayer().getMoveDirection() == Main.UP) {
+					if (PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)-1].equals(CreateMap.getDoor())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getOpenDoor(), PlayState.getPlayer().getX()/32, (PlayState.getPlayer().getY()/32)-1);
 					}
 				}
 			}
@@ -93,42 +94,42 @@ public class KeyManager implements KeyListener {
 
 		// Detonate bombs
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Main.getPlayer().setDetonate(true);
+			PlayState.getPlayer().setDetonate(true);
 		}
 		// Place small bomb
 		if (e.getKeyCode() == KeyEvent.VK_S) {
-			if (Main.getPlayer().getSmallBomb() > 0) {
-				if (Main.getPlayer().getMoveDirection() == Main.DOWN) {
-					if (Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)+1].equals(CreateMap.getGrass()) ||
-							Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)+1].equals("R")) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), Main.getPlayer().getX()/32, (Main.getPlayer().getY()/32)+1);
-						Main.getPlayer().decrementSmallBomb();
+			if (PlayState.getPlayer().getSmallBomb() > 0) {
+				if (PlayState.getPlayer().getMoveDirection() == Main.DOWN) {
+					if (PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)+1].equals(CreateMap.getGrass()) ||
+							PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)+1].equals("R")) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), PlayState.getPlayer().getX()/32, (PlayState.getPlayer().getY()/32)+1);
+						PlayState.getPlayer().decrementSmallBomb();
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.LEFT) {
-					if (Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)-1][(Main.getPlayer().getY()/32)].equals(CreateMap.getGrass()) ||
-							Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)-1][(Main.getPlayer().getY()/32)].equals("R")) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), (Main.getPlayer().getX()/32)-1, (Main.getPlayer().getY()/32));
-						Main.getPlayer().decrementSmallBomb();
+				else if (PlayState.getPlayer().getMoveDirection() == Main.LEFT) {
+					if (PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)-1][(PlayState.getPlayer().getY()/32)].equals(CreateMap.getGrass()) ||
+							PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)-1][(PlayState.getPlayer().getY()/32)].equals("R")) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), (PlayState.getPlayer().getX()/32)-1, (PlayState.getPlayer().getY()/32));
+						PlayState.getPlayer().decrementSmallBomb();
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.RIGHT) {
-					if (Main.getCurrentLevel().getMapArray()[(Main.getPlayer().getX()/32)+1][(Main.getPlayer().getY()/32)].equals(CreateMap.getGrass())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), (Main.getPlayer().getX()/32)+1, (Main.getPlayer().getY()/32));
-						Main.getPlayer().decrementSmallBomb();
+				else if (PlayState.getPlayer().getMoveDirection() == Main.RIGHT) {
+					if (PlayState.getCurrentLevel().getMapArray()[(PlayState.getPlayer().getX()/32)+1][(PlayState.getPlayer().getY()/32)].equals(CreateMap.getGrass())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), (PlayState.getPlayer().getX()/32)+1, (PlayState.getPlayer().getY()/32));
+						PlayState.getPlayer().decrementSmallBomb();
 					}
 				}
-				else if (Main.getPlayer().getMoveDirection() == Main.UP) {
-					if (Main.getCurrentLevel().getMapArray()[Main.getPlayer().getX()/32][(Main.getPlayer().getY()/32)-1].equals(CreateMap.getGrass())) {
-						Main.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), Main.getPlayer().getX()/32, (Main.getPlayer().getY()/32)-1);
-						Main.getPlayer().decrementSmallBomb();
+				else if (PlayState.getPlayer().getMoveDirection() == Main.UP) {
+					if (PlayState.getCurrentLevel().getMapArray()[PlayState.getPlayer().getX()/32][(PlayState.getPlayer().getY()/32)-1].equals(CreateMap.getGrass())) {
+						PlayState.getCurrentLevel().setMapArray(CreateMap.getSmallBomb(), PlayState.getPlayer().getX()/32, (PlayState.getPlayer().getY()/32)-1);
+						PlayState.getPlayer().decrementSmallBomb();
 					}
 				}
 			}
 		}
 		// R to reset level
 		if (e.getKeyCode() == KeyEvent.VK_R) {
-			Main.getPlayer().reset = true;
+			PlayState.getPlayer().reset = true;
 		}
 
 		// To bring up controls menu
@@ -143,7 +144,7 @@ public class KeyManager implements KeyListener {
 
 		}
 
-		// Press enter
+		// When enter is pressed during the menu screen
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
 			// Start game
@@ -152,7 +153,7 @@ public class KeyManager implements KeyListener {
 			}
 			// Character select
 			else if (Main.menuState.getMenu().getSelected() == 2) {
-
+				
 			}
 			// Items
 			else if (Main.menuState.getMenu().getSelected() == 3) {
@@ -160,7 +161,7 @@ public class KeyManager implements KeyListener {
 			}
 			// Controls
 			else if (Main.menuState.getMenu().getSelected() == 4) {
-
+				State.setState(Main.controlsState);
 			}
 
 		}
@@ -174,19 +175,19 @@ public class KeyManager implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Main.getPlayer().down = false;
+			PlayState.getPlayer().down = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Main.getPlayer().left = false;
+			PlayState.getPlayer().left = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Main.getPlayer().right = false;
+			PlayState.getPlayer().right = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			Main.getPlayer().up = false;
+			PlayState.getPlayer().up = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Main.getPlayer().setDetonate(false);
+			PlayState.getPlayer().setDetonate(false);
 		}
 
 	}

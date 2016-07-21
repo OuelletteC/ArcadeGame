@@ -15,9 +15,9 @@ public class PauseState extends State {
 	@Override
 	public void render(Graphics g) {
 
-		Main.getCurrentLevel().drawMap(g);
-		Main.getPlayer().render(g);
-		Main.getCurrentLevel().drawControls(g);
+		//Main.getCurrentLevel().drawMap(g);
+		//Main.getPlayer().render(g);
+		PlayState.getCurrentLevel().drawControls(g);
 
 	}
 
