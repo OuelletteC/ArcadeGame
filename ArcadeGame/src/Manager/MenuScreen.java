@@ -14,8 +14,6 @@ public class MenuScreen {
 
 	public void drawMenuScreen(Graphics g) {
 		
-	
-		
 		g.drawImage(menuImage.getMenuBackground(), 0, 0, null);
 		g.drawImage(menuImage.getMenu(), 335, 170, null);
 		g.drawImage(menuImage.getGameTitle(), 230, 50, null);
@@ -40,6 +38,7 @@ public class MenuScreen {
 		if (selected == 1) {
 			selected = 2;
 		}
+		/*
 		else if (selected == 2) {
 			selected = 3;
 		}
@@ -48,22 +47,12 @@ public class MenuScreen {
 		}
 		else if (selected == 4) {
 			selected = 1;
-		}
+		}*/
 	}
 
 	public void moveUp() {
-
-		if (selected == 1) {
-			selected = 4;
-		}
-		else if (selected == 2) {
+		if (selected == 2) {
 			selected = 1;
-		}
-		else if (selected == 3) {
-			selected = 2;
-		}
-		else if (selected == 4) {
-			selected = 3;
 		}
 	}
 

@@ -146,24 +146,14 @@ public class KeyManager implements KeyListener {
 
 		// When enter is pressed during the menu screen
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
 			// Start game
 			if (Main.menuState.getMenu().getSelected() == 1) {
 				State.setState(Main.playState);
 			}
-			// Character select
-			else if (Main.menuState.getMenu().getSelected() == 2) {
-				
-			}
-			// Items
-			else if (Main.menuState.getMenu().getSelected() == 3) {
-
-			}
 			// Controls
-			else if (Main.menuState.getMenu().getSelected() == 4) {
+			else if (Main.menuState.getMenu().getSelected() == 2) {
 				State.setState(Main.controlsState);
 			}
-
 		}
 		// Press Escape
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {

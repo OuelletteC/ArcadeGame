@@ -26,10 +26,16 @@ public class MenuImage {
 			spriteSheet = loader.loadImage("arrow.gif");
 			this.arrow = spriteSheet.getSubimage(0, 0, 50, 50);
 
-			spriteSheet = loader.loadImage("menu.gif");
-			this.menu = spriteSheet.getSubimage(0, 0, 400, 230);
+			//spriteSheet = loader.loadImage("menu.gif");
+			//this.menu = spriteSheet.getSubimage(0, 0, 400, 230);
+			
+			spriteSheet = loader.loadImage("menu2.gif");
+			this.menu = spriteSheet.getSubimage(0, 0, 400, 115);
 
 			spriteSheet = loader.loadImage("gametitle.gif");
+			this.gameTitle = spriteSheet.getSubimage(0, 0, 500, 80);
+			
+			spriteSheet = loader.loadImage("gametitle2.gif");
 			this.gameTitle = spriteSheet.getSubimage(0, 0, 500, 80);
 
 		} catch (IOException e) {
